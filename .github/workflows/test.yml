@@ -29,6 +29,8 @@ jobs:
           distribution: 'oracle'
           cache: 'gradle'
 
+
+
       - name: Build
         run: ./gradlew build -x test
         working-directory: src/main
