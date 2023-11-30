@@ -33,11 +33,11 @@ jobs:
       - name: BL unit test
         run: |
           docker compose exec app ./gradlew cleanTest :BL:test
-          sudo cp -R allure-results/BL res/BL
         if: ${{ success() }}
 
       - name: lsBL
         run: |
+          sudo cp -R allure-results/BL res/BL
           ls allure-results
           echo BL
           ls allure-results/BL
@@ -59,11 +59,11 @@ jobs:
       - name: DA unit test
         run: |
           docker compose exec app ./gradlew cleanTest :DA:test
-          sudo cp -R allure-results/DA res/DA
         if: ${{ success() }}
 
       - name: lsDA
         run: |
+          sudo cp -R allure-results/DA res/DA
           ls allure-results
           echo BL
           ls allure-results/BL
@@ -85,11 +85,11 @@ jobs:
       - name: Integrate test
         run: |
           docker compose exec app ./gradlew cleanTest :test
-          sudo cp -R allure-results/main res/main
         if: ${{ success() }}
 
       - name: lsINT
         run: |
+          sudo cp -R allure-results/main res/main
           ls allure-results
           echo BL
           ls allure-results/BL
@@ -111,11 +111,11 @@ jobs:
       - name: E2E test
         run: |
           docker compose exec app ./gradlew cleanTest :RestAPI:test
-          sudo cp -R allure-results/RestAPI res/RestAPI
         if: ${{ success() }}
 
       - name: lse2e
         run: |
+          sudo cp -R allure-results/RestAPI res/RestAPI
           ls allure-results
           echo BL
           ls allure-results/BL
