@@ -9,6 +9,7 @@ plugins {
     java
     id("co.uzzu.dotenv.gradle") version "2.0.0"
     kotlin("plugin.serialization") version "1.9.10"
+    id("io.qameta.allure") version "2.11.2"
 }
 
 group = "org.example"
@@ -29,6 +30,7 @@ dependencies {
     implementation("org.slf4j:slf4j-nop:$slf4j_version")
     implementation("org.slf4j:slf4j-api:$slf4j_version")
     implementation("com.zaxxer:HikariCP:4.0.3")
+    implementation("io.github.cdimascio:dotenv-kotlin:6.4.1")
 
     implementation("io.qameta.allure:allure-bom:2.24.0")
     testImplementation("io.qameta.allure:allure-junit5:2.24.0")
@@ -45,9 +47,11 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 
-    if (project.hasProperty("excludeTests")) {
-        exclude(project.property("excludeTests").toString())
+    useJUnitPlatform()
+    testLogging {
+        events ("PASSED", "FAILED", "SKIPPED", "STANDARD_OUT", "STANDARD_ERROR")
     }
+    testLogging.showStandardStreams = true
 }
 
 kotlin {

@@ -14,6 +14,7 @@ import ch.qos.logback.core.FileAppender
 import ch.qos.logback.core.util.StatusPrinter
 import com.zaxxer.hikari.pool.HikariPool
 import da.repositories.factory.PgRepositoryFactory
+import io.github.cdimascio.dotenv.dotenv
 import org.slf4j.LoggerFactory
 
 fun getLogLevel(level: String): Level {
@@ -68,7 +69,8 @@ fun main() {
     try {
         configLoggers("ALL")
 
-        val main_shema = System.getenv("MAIN_SCHEMA") ?: throw Exception("no MAIN_SCHEMA in env")
+        val dotenv = dotenv()
+        val main_shema = dotenv["MAIN_SCHEMA"]
         val repositoryFactory = PgRepositoryFactory(main_shema)
         CommentManager.registerRepository(repositoryFactory.createCommentRepository())
         IngredientManager.registerRepository(repositoryFactory.createIngredientRepository())

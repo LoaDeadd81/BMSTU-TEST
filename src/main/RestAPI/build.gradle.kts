@@ -7,7 +7,7 @@ plugins {
     kotlin("jvm") version "1.9.0"
     id("io.ktor.plugin") version "2.3.5"
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
-
+    id("io.qameta.allure") version "2.11.2"
     application
 }
 
@@ -22,6 +22,7 @@ repositories {
 dependencies {
 //    testImplementation(kotlin("test"))
     implementation(project(":BL"))
+    implementation(project(":DA"))
 
     implementation("io.ktor:ktor-server-core-jvm")
     implementation("io.ktor:ktor-server-auth-jvm")
@@ -42,12 +43,28 @@ dependencies {
     implementation("io.ktor:ktor-server-call-id:$ktor_version")
     implementation("io.ktor:ktor-server-call-logging:$ktor_version")
     implementation("com.apurebase:kgraphql-ktor:0.19.0")
-    testImplementation("io.ktor:ktor-server-tests-jvm")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+//    testImplementation("io.ktor:ktor-server-tests-jvm")
+//    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+    implementation("io.github.cdimascio:dotenv-kotlin:6.4.1")
+
+    implementation("io.qameta.allure:allure-bom:2.24.0")
+    testImplementation("io.qameta.allure:allure-junit5:2.24.0")
+
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
+    testImplementation("com.radcortez.flyway:flyway-junit5-extension:1.4.0")
+
+    testImplementation("io.ktor:ktor-server-test-host:$ktor_version")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlin_version")
+    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
 }
 
 tasks.test {
     useJUnitPlatform()
+    testLogging {
+        events ("PASSED", "FAILED", "SKIPPED", "STANDARD_OUT", "STANDARD_ERROR")
+    }
+    testLogging.showStandardStreams = true
 }
 
 kotlin {

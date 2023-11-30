@@ -38,6 +38,8 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("org.slf4j:slf4j-nop:$slf4j_version")
     implementation("org.slf4j:slf4j-api:$slf4j_version")
+    implementation("io.github.cdimascio:dotenv-kotlin:6.4.1")
+
     testImplementation("com.radcortez.flyway:flyway-junit5-extension:1.4.0")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")

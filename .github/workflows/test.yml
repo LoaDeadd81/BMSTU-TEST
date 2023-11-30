@@ -13,7 +13,7 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         ports:
-          - 5432:5432
+          - 7543:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -29,9 +29,36 @@ jobs:
           distribution: 'oracle'
           cache: 'gradle'
 
-
-
       - name: Build
         run: ./gradlew build -x test
         working-directory: src/main
-        
+
+      - name: BL unit test
+        run: ./gradlew cleanTest :BL:test
+        working-directory: src/main
+        if: ${{ success() }}
+
+      - name: DA unit test
+        run: ./gradlew cleanTest :DA:test
+        working-directory: src/main
+        if: ${{ success() }}
+
+      - name: Integrate test
+        run: ./gradlew cleanTest :test
+        working-directory: src/main
+        if: ${{ success() }}
+
+      - name: E2E test
+        run: ./gradlew cleanTest :RestAPI:test
+        working-directory: src/main
+        if: ${{ success() }}
+
+      - name: Test marketplace action
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        id: allure-report
+        with:
+          allure_results: src/main/allure-results
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
