@@ -22,16 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4.1.1
 
-      - name: Cache java
-        id: cache-java
-        uses: actions/cache@v3
-        with:
-          path: /opt/hostedtoolcache/Java_Oracle_jdk/20/x64/bin
-          key: ${{ runner.os }}-java
-          restore-keys: ${{ runner.os }}-java
-
       - name: Setup Java
-        if: ${{ steps.cache-java.outputs.cache-hit != 'true' }}
         uses: actions/setup-java@v4.0.0
         with:
           java-version: '20'
