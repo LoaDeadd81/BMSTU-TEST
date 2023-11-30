@@ -19,10 +19,6 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-
-    env:
-      JAVA_HOME: /opt/hostedtoolcache/Java_Oracle_jdk/20/x64
-
     steps:
       - uses: actions/checkout@v4.1.1
 
@@ -30,7 +26,7 @@ jobs:
         id: cache-java
         uses: actions/cache@v3
         with:
-          path: ${{ env.JAVA_HOME }}\bin
+          path: /opt/hostedtoolcache/Java_Oracle_jdk/20/x64/bin
           key: ${{ runner.os }}-java
           restore-keys: ${{ runner.os }}-java
 
