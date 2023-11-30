@@ -34,7 +34,7 @@ jobs:
           cache: 'gradle'
 
       - name: JH
-        uses: env | grep JAVA_HOME
+        run: env | grep JAVA_HOME
 
       - name: Build
         run: ./gradlew build -x test
