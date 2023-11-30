@@ -16,146 +16,33 @@ jobs:
           sudo dpkg -i allure_2.24.1-1_all.deb
 
       - name: Up containers
-        run: |
-          mkdir -p res/BL
-          mkdir -p res/DA
-          mkdir -p res/main
-          mkdir -p res/RestAPI
-          docker-compose up -d
+        run: docker-compose up -d
 
       - name: Build
         run: docker compose exec app ./gradlew build -x test
 
       - name: BL unit test
-        run: |
-          docker compose exec app ./gradlew cleanTest :BL:test
+        run: docker compose exec app ./gradlew cleanTest :BL:test
         if: ${{ success() }}
-
-      - uses: actions/checkout@master
-      - name: copy BL
-        uses: canastro/copy-file-action@master
-        with:
-          source: "allure-results/BL"
-          target: "res/BL"
-
-      - name: lsBL
-        run: |
-          ls allure-results
-          echo BL
-          ls allure-results/BL
-          echo DA
-          ls allure-results/DA
-          echo main
-          ls allure-results/main
-          echo RestAPI
-          ls allure-results/RestAPI
-          echo BL
-          ls res/BL
-          echo DA
-          ls res/DA
-          echo main
-          ls res/main
-          echo RestAPI
-          ls res/RestAPI
 
       - name: DA unit test
-        run: |
-          docker compose exec app ./gradlew cleanTest :DA:test
+        run: docker compose exec app ./gradlew cleanTest :DA:test
         if: ${{ success() }}
-
-      - uses: actions/checkout@master
-      - name: copy DA
-        uses: canastro/copy-file-action@master
-        with:
-          source: "allure-results/DA"
-          target: "res/DA"
-
-      - name: lsDA
-        run: |
-          ls allure-results
-          echo BL
-          ls allure-results/BL
-          echo DA
-          ls allure-results/DA
-          echo main
-          ls allure-results/main
-          echo RestAPI
-          ls allure-results/RestAPI
-          echo BL
-          ls res/BL
-          echo DA
-          ls res/DA
-          echo main
-          ls res/main
-          echo RestAPI
-          ls res/RestAPI
 
       - name: Integrate test
-        run: |
-          docker compose exec app ./gradlew cleanTest :test
+        run: docker compose exec app ./gradlew cleanTest :test
         if: ${{ success() }}
-
-      - uses: actions/checkout@master
-      - name: copy main
-        uses: canastro/copy-file-action@master
-        with:
-          source: "allure-results/main"
-          target: "res/main"
-
-      - name: lsINT
-        run: |
-          ls allure-results
-          echo BL
-          ls allure-results/BL
-          echo DA
-          ls allure-results/DA
-          echo main
-          ls allure-results/main
-          echo RestAPI
-          ls allure-results/RestAPI
-          echo BL
-          ls res/BL
-          echo DA
-          ls res/DA
-          echo main
-          ls res/main
-          echo RestAPI
-          ls res/RestAPI
 
       - name: E2E test
-        run: |
-          docker compose exec app ./gradlew cleanTest :RestAPI:test
+        run: docker compose exec app ./gradlew cleanTest :RestAPI:test
         if: ${{ success() }}
-
-      - uses: actions/checkout@master
-      - name: copy RestAPI
-        uses: canastro/copy-file-action@master
-        with:
-          source: "allure-results/RestAPI"
-          target: "res/RestAPI"
-
-      - name: lse2e
-        run: |
-          ls allure-results
-          echo BL
-          ls allure-results/BL
-          echo DA
-          ls allure-results/DA
-          echo main
-          ls allure-results/main
-          echo RestAPI
-          ls allure-results/RestAPI
-          echo BL
-          ls res/BL
-          echo DA
-          ls res/DA
-          echo main
-          ls res/main
-          echo RestAPI
-          ls res/RestAPI
 
       - name: Generate report
         run: |
+          docker compose exec app sh -c "mkdir -p /app/res/BL && cp -R /app/BL/build/allure-results/* /app/res/BL"
+          docker compose exec app sh -c "mkdir -p /app/res/DA && cp -R /app/DA/build/allure-results/* /app/res/DA"
+          docker compose exec app sh -c "mkdir -p /app/res/RestAPI && cp -R /app/RestAPI/build/allure-results/* /app/res/RestAPI"
+          docker compose exec app sh -c "mkdir -p /app/res/main && cp -R /app/build/allure-results/* /app/res/main"
           mkdir allure-report
           allure generate res/* --clean
 
