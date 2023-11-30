@@ -47,6 +47,7 @@ dependencies {
     implementation("io.qameta.allure:allure-bom:2.24.0")
     testImplementation("io.qameta.allure:allure-junit5:2.24.0")
 
+    testImplementation("com.radcortez.flyway:flyway-junit5-extension:1.4.0")
     testImplementation("io.ktor:ktor-server-test-host:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlin_version")
     implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")

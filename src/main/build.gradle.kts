@@ -31,6 +31,7 @@ dependencies {
     implementation("org.slf4j:slf4j-api:$slf4j_version")
     implementation("com.zaxxer:HikariCP:4.0.3")
 
+    testImplementation("com.radcortez.flyway:flyway-junit5-extension:1.4.0")
     implementation("io.qameta.allure:allure-bom:2.24.0")
     testImplementation("io.qameta.allure:allure-junit5:2.24.0")
 }

@@ -39,7 +39,6 @@ dependencies {
     implementation("org.slf4j:slf4j-api:$slf4j_version")
 
     testImplementation("com.radcortez.flyway:flyway-junit5-extension:1.4.0")
-
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
     testImplementation("org.assertj:assertj-core:3.24.2")
