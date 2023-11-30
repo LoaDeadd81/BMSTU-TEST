@@ -5,11 +5,15 @@ on: push
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+
+    env:
+      JAVA_HOME_20_X64: '/usr/java//openjdk-20'
+
     services:
       dbtest:
         image: postgres:latest
         env:
-          POSTGRES_DB: test
+          POSTGRES_DB: back
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         ports:
@@ -28,6 +32,9 @@ jobs:
           java-version: '20'
           distribution: 'oracle'
           cache: 'gradle'
+
+      - name: JH
+        uses: env | grep JAVA_HOME
 
       - name: Build
         run: ./gradlew build -x test
