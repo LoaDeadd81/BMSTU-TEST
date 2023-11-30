@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      JAVA_HOME_20_X64: '/usr/java//openjdk-20'
+      JAVA_HOME: /opt/hostedtoolcache/Java_Oracle_jdk/20/x64
 
     services:
       dbtest:
@@ -26,15 +26,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4.1.1
 
+      - name: Cache dotnet
+        id: cache-java
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.JAVA_HOME }}\bin
+          key: ${{ runner.os }}-java
+          restore-keys: ${{ runner.os }}-java
+
       - name: Setup Java
+        if: ${{ steps.cache-java.outputs.cache-hit != 'true' }}
         uses: actions/setup-java@v4.0.0
         with:
           java-version: '20'
           distribution: 'oracle'
           cache: 'gradle'
-
-      - name: JH
-        run: env | grep JAVA_HOME
 
       - name: Build
         run: ./gradlew build -x test
@@ -60,12 +66,9 @@ jobs:
         working-directory: src/main
         if: ${{ success() }}
 
-      - name: Test marketplace action
-        uses: simple-elf/allure-report-action@master
+      - name: Test report
+        uses: afiore/action-allure-report@v0.1.0
         if: always()
-        id: allure-report
         with:
-          allure_results: src/main/allure-results
-          gh_pages: gh-pages
-          allure_report: allure-report
-          allure_history: allure-history
+          results-dir: src/main/allure-results
+          report-dir: allure-report
