@@ -30,17 +30,49 @@ jobs:
         run: docker compose exec app ./gradlew cleanTest :BL:test
         if: ${{ success() }}
 
+      - name: lsBL
+        run: |
+          ls allure-results
+          ls allure-results/BL
+          ls allure-results/DA
+          ls allure-results/main
+          ls allure-results/RestAPI
+
       - name: DA unit test
         run: docker compose exec app ./gradlew cleanTest :DA:test
         if: ${{ success() }}
+
+      - name: lsBL
+        run: |
+          ls allure-results
+          ls allure-results/BL
+          ls allure-results/DA
+          ls allure-results/main
+          ls allure-results/RestAPI
 
       - name: Integrate test
         run: docker compose exec app ./gradlew cleanTest :test
         if: ${{ success() }}
 
+      - name: lsINT
+        run: |
+          ls allure-results
+          ls allure-results/BL
+          ls allure-results/DA
+          ls allure-results/main
+          ls allure-results/RestAPI
+
       - name: E2E test
         run: docker compose exec app ./gradlew cleanTest :RestAPI:test
         if: ${{ success() }}
+
+      - name: lse2e
+        run: |
+          ls allure-results
+          ls allure-results/BL
+          ls allure-results/DA
+          ls allure-results/main
+          ls allure-results/RestAPI
 
       - name: Generate report
         run: |
