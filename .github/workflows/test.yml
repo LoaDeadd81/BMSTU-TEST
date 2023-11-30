@@ -65,6 +65,15 @@ jobs:
         working-directory: src/main
         if: ${{ success() }}
 
+      - name: pwd
+        run: pwd
+
+      - name: ls1
+        run: ls
+
+      - name: ls2
+        run: ls src/main
+
       - name: Generate report
         run: allure generate src/main/allure-results/* --clean
 
