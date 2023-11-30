@@ -63,7 +63,9 @@ jobs:
 #        if: ${{ success() }}
 
       - name: Install allure
-        run: sudo apt-get update -y && sudo apt-get install -y allure
+        uses: ConorMacBride/install-package@v1
+        with:
+          apt: allure
 
       - name: Check allure
         run: allure --version
