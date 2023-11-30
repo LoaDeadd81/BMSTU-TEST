@@ -58,10 +58,10 @@ jobs:
 
       - name: Generate report
         run: |
-          cp -R src/main/BL/build/allure-results src/main/allure-results/BL
-          cp -R src/main/DA/build/allure-results src/main/allure-results/DA
-          cp -R src/main/RestAPI/build/allure-results src/main/allure-results/RestAPI
-          cp -R src/main/build/allure-results src/main/allure-results/main
+          mkdir -p src/main/allure-results/BL && cp -R src/main/BL/build/allure-results src/main/allure-results/BL
+          mkdir -p src/main/allure-results/DA && cp -R src/main/DA/build/allure-results src/main/allure-results/DA
+          mkdir -p src/main/allure-results/RestAPI && cp -R src/main/RestAPI/build/allure-results src/main/allure-results/RestAPI
+          mkdir -p src/main/allure-results/main && cp -R src/main/build/allure-results src/main/allure-results/main
           allure generate src/main/allure-results/* --clean
 
       - name: Archive report
