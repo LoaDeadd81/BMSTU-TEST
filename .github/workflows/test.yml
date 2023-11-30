@@ -10,7 +10,8 @@ jobs:
 
       - name: Install allure
         run: |
-          sudo apt-get install default-jre
+          sudo apt-get update -y
+          sudo apt-get install -y default-jre
           sudo wget https://github.com/allure-framework/allure2/releases/download/2.24.1/allure_2.24.1-1_all.deb
           sudo dpkg -i allure_2.24.1-1_all.deb
 
