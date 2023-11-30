@@ -11,7 +11,6 @@ buildscript {
 plugins {
     kotlin("jvm") version "1.9.0"
     id("org.flywaydb.flyway") version "10.0.0"
-    id("io.qameta.allure") version "2.11.2"
 }
 
 group = "org.example"
@@ -20,8 +19,6 @@ version = "1.0-SNAPSHOT"
 repositories {
     mavenCentral()
 }
-
-
 
 dependencies {
     testImplementation(kotlin("test"))
@@ -39,11 +36,7 @@ dependencies {
     implementation("org.slf4j:slf4j-api:$slf4j_version")
 
     testImplementation("com.radcortez.flyway:flyway-junit5-extension:1.4.0")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
-    testImplementation("org.assertj:assertj-core:3.24.2")
-
-    implementation("io.qameta.allure:allure-bom:2.24.0")
+    testImplementation(platform("io.qameta.allure:allure-bom:2.24.0"))
     testImplementation("io.qameta.allure:allure-junit5:2.24.0")
 }
 

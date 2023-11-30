@@ -66,7 +66,7 @@ fun main() {
     val logger = LoggerFactory.getLogger("mainLogger")
 
     try {
-        configLoggers("ALL")
+//        configLoggers("ALL")
 
         val main_shema = System.getenv("MAIN_SCHEMA")
         val repositoryFactory = PgRepositoryFactory(main_shema)

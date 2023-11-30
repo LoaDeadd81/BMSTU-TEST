@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory
 
 class PgRepositoryFactory(private val schemaRep: String) : IRepositoryFactory {
 
-    val logger = LoggerFactory.getLogger("mainLogger")
+//    val logger = LoggerFactory.getLogger("mainLogger")
 
     init {
         val DB_CONNECT = System.getenv("DB_CONNECT") ?: throw Exception("no DB_CONNECT in env")
@@ -34,7 +34,7 @@ class PgRepositoryFactory(private val schemaRep: String) : IRepositoryFactory {
 
         Database.connect(HikariDataSource(hikariConfig))
 
-        logger.info("DB with config connected {}", hikariConfig)
+//        logger.info("DB with config connected {}", hikariConfig)
     }
 
     override fun createCommentRepository(): PgCommentRepository = PgCommentRepository()

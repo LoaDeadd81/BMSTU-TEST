@@ -7,7 +7,6 @@ plugins {
     kotlin("jvm") version "1.9.0"
     id("io.ktor.plugin") version "2.3.5"
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
-    id("io.qameta.allure") version "2.11.2"
     application
 }
 
@@ -44,14 +43,14 @@ dependencies {
     implementation("io.ktor:ktor-server-call-logging:$ktor_version")
     implementation("com.apurebase:kgraphql-ktor:0.19.0")
 
-    implementation("io.qameta.allure:allure-bom:2.24.0")
+    testImplementation(platform("io.qameta.allure:allure-bom:2.24.0"))
     testImplementation("io.qameta.allure:allure-junit5:2.24.0")
-
     testImplementation("com.radcortez.flyway:flyway-junit5-extension:1.4.0")
+
     testImplementation("io.ktor:ktor-server-test-host:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlin_version")
-    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+    testImplementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+    testImplementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
 }
 
 tasks.test {
