@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-//    testImplementation(kotlin("test"))
+    testImplementation(kotlin("test"))
     implementation(project(":BL"))
     implementation(project(":DA"))
 
@@ -43,14 +43,9 @@ dependencies {
     implementation("io.ktor:ktor-server-call-id:$ktor_version")
     implementation("io.ktor:ktor-server-call-logging:$ktor_version")
     implementation("com.apurebase:kgraphql-ktor:0.19.0")
-//    testImplementation("io.ktor:ktor-server-tests-jvm")
-//    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 
     implementation("io.qameta.allure:allure-bom:2.24.0")
     testImplementation("io.qameta.allure:allure-junit5:2.24.0")
-
-    testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
-    testImplementation("com.radcortez.flyway:flyway-junit5-extension:1.4.0")
 
     testImplementation("io.ktor:ktor-server-test-host:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlin_version")

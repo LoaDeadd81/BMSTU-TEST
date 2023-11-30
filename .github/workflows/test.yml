@@ -37,23 +37,9 @@ jobs:
         run: docker compose exec app ./gradlew cleanTest :RestAPI:test
         if: ${{ success() }}
 
-      - name: ls
-        run:
-          echo BL
-          docker compose exec app ls /app/BL
-          docker compose exec app ls /app/BL/build
-          docker compose exec app ls /app/BL/build/allure-results
-          echo main
-          docker compose exec app ls /app/main
-          docker compose exec app ls /app/main/build
-          docker compose exec app ls /app/main/build/allure-results
-
       - name: Generate report
         run: |
-          docker compose exec app sh -c "mkdir -p /app/res/BL && cp -R /app/BL/build/allure-results/* /app/res/BL"
-          docker compose exec app sh -c "mkdir -p /app/res/DA && cp -R /app/DA/build/allure-results/* /app/res/DA"
-          docker compose exec app sh -c "mkdir -p /app/res/RestAPI && cp -R /app/RestAPI/build/allure-results/* /app/res/RestAPI"
-          docker compose exec app sh -c "mkdir -p /app/res/main && cp -R /app/build/allure-results/* /app/res/main"
+          docker compose exec app sh -c "mkdir -p /app/res && cp -R /app/allure-results/* /app/res"
           mkdir allure-report
           allure generate res/* --clean
 

@@ -24,10 +24,9 @@ repositories {
 
 
 dependencies {
-//    testImplementation(kotlin("test"))
+    testImplementation(kotlin("test"))
     implementation(project(":BL"))
 
-//    testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
     implementation("org.jetbrains.exposed:exposed-core:0.44.0")
     implementation("org.jetbrains.exposed:exposed-dao:0.44.0")
     implementation("org.jetbrains.exposed:exposed-jdbc:0.44.0")
