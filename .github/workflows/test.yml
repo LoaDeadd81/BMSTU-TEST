@@ -40,13 +40,13 @@ jobs:
       - name: ls
         run:
           echo BL
-          ls /app/BL
-          ls /app/BL/build
-          ls /app/BL/build/allure-results
+          docker compose exec app ls /app/BL
+          docker compose exec app ls /app/BL/build
+          docker compose exec app ls /app/BL/build/allure-results
           echo main
-          ls /app/main
-          ls /app/main/build
-          ls /app/main/build/allure-results
+          docker compose exec app ls /app/main
+          docker compose exec app ls /app/main/build
+          docker compose exec app ls /app/main/build/allure-results
 
       - name: Generate report
         run: |
