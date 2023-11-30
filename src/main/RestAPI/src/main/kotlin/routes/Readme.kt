@@ -9,15 +9,15 @@ import org.intellij.markdown.html.HtmlGenerator
 import org.intellij.markdown.parser.MarkdownParser
 import java.io.File
 
-fun Route.readme(){
-    route("/readme"){
-        get {
-            val src = File("/docs/README.md").readText()
-            val flavour = CommonMarkFlavourDescriptor()
-            val parsedTree = MarkdownParser(flavour).buildMarkdownTreeFromString(src)
-            val html = HtmlGenerator(src, parsedTree, flavour).generateHtml()
-            call.respondText(html, ContentType.Text.Html)
-        }
-
-    }
-}
+//fun Route.readme(){
+//    route("/readme"){
+//        get {
+//            val src = File("/docs/README.md").readText()
+//            val flavour = CommonMarkFlavourDescriptor()
+//            val parsedTree = MarkdownParser(flavour).buildMarkdownTreeFromString(src)
+//            val html = HtmlGenerator(src, parsedTree, flavour).generateHtml()
+//            call.respondText(html, ContentType.Text.Html)
+//        }
+//
+//    }
+//}

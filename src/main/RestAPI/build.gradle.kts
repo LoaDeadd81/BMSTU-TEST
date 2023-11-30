@@ -45,7 +45,6 @@ dependencies {
     implementation("com.apurebase:kgraphql-ktor:0.19.0")
 //    testImplementation("io.ktor:ktor-server-tests-jvm")
 //    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
-    implementation("io.github.cdimascio:dotenv-kotlin:6.4.1")
 
     implementation("io.qameta.allure:allure-bom:2.24.0")
     testImplementation("io.qameta.allure:allure-junit5:2.24.0")

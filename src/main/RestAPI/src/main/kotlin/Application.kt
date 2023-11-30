@@ -7,7 +7,6 @@ import api.plugins.configureValidation
 import com.example.plugins.configureHTTP
 import com.example.plugins.configureRouting
 import com.example.plugins.configureSecurity
-import io.github.cdimascio.dotenv.dotenv
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
@@ -18,14 +17,12 @@ class RestApi {
 
 
     companion object {
-        val dotenv = dotenv()
         val host = "0.0.0.0";
-        var port = dotenv["PORT"]?.toInt() ?: throw Exception("no PORT in env")
+        var port = System.getenv("PORT")?.toInt() ?: throw Exception("no PORT in env")
     }
 
     fun run() {
-        val dotenv = dotenv()
-        val port = dotenv["PORT"]?.toInt() ?: throw Exception("no PORT in env")
+        val port = System.getenv("PORT")?.toInt() ?: throw Exception("no PORT in env")
 
         server = embeddedServer(Netty, port = port, host = "0.0.0.0", module = Application::module).start(wait = true)
     }

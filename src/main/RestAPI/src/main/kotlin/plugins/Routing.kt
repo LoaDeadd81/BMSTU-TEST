@@ -1,6 +1,5 @@
 package com.example.plugins
 
-import api.api.routes.readme
 import api.routes.auth
 import api.routes.ingredients
 import api.routes.recipes
@@ -18,7 +17,6 @@ fun Application.configureRouting() {
             recipes()
             auth()
         }
-        readme()
-
+//        readme()
     }
 }

@@ -21,7 +21,6 @@ import com.apurebase.kgraphql.Context
 import com.apurebase.kgraphql.GraphQL
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
-import io.github.cdimascio.dotenv.dotenv
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
 import io.ktor.server.auth.jwt.*
@@ -29,10 +28,9 @@ import kotlinx.datetime.LocalDateTime
 import java.util.*
 
 fun Application.configureGQL() {
-    val dotenv = dotenv()
-    val jwtAudience = dotenv["JWT_AUD"] ?: throw Exception("no JWT_AUD in env")
-    val jwtDomain = dotenv["JWT_ISSUER"] ?: throw Exception("no JWT_ISSUER in env")
-    val jwtSecret = dotenv["JWT_SECRET"] ?: throw Exception("no JWT_SECRET in env")
+    val jwtAudience = System.getenv("JWT_AUD") ?: throw Exception("no JWT_AUD in env")
+    val jwtDomain = System.getenv("JWT_ISSUER") ?: throw Exception("no JWT_ISSUER in env")
+    val jwtSecret = System.getenv("JWT_SECRET") ?: throw Exception("no JWT_SECRET in env")
 
     install(GraphQL) {
         playground = true

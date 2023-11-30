@@ -5,64 +5,46 @@ on: push
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    services:
-      dbtest:
-        image: postgres:latest
-        env:
-          POSTGRES_DB: back
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-        ports:
-          - 7543:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
     steps:
       - uses: actions/checkout@v4.1.1
 
-      - name: Setup Java
-        uses: actions/setup-java@v4.0.0
-        with:
-          java-version: '20'
-          distribution: 'oracle'
-          cache: 'gradle'
-
       - name: Install allure
-        run: sudo apt-get update -y && sudo apt-get install -y default-jre && wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure_2.18.1-1_all.deb && sudo dpkg -i allure_2.18.1-1_all.deb
+        run: |
+          sudo apt-get install default-jre
+          wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure_2.18.1-1_all.deb
+          sudo dpkg -i allure_2.18.1-1_all.deb
+
+      - name: Up containers
+        run: |
+          mkdir -p allure-results/BL
+          mkdir -p allure-results/DA
+          mkdir -p allure-results/main
+          mkdir -p allure-results/RestAPI
+          docker-compose up -d
 
       - name: Build
-        run: ./gradlew build -x test
-        working-directory: src/main
+        run: docker compose exec app ./gradlew build -x test
 
       - name: BL unit test
-        run: ./gradlew cleanTest :BL:test
-        working-directory: src/main
+        run: docker compose exec app ./gradlew cleanTest :BL:test
         if: ${{ success() }}
 
       - name: DA unit test
-        run: ./gradlew cleanTest :DA:test
-        working-directory: src/main
+        run: docker compose exec app ./gradlew cleanTest :DA:test
         if: ${{ success() }}
 
       - name: Integrate test
-        run: ./gradlew cleanTest :test
-        working-directory: src/main
+        run: docker compose exec app ./gradlew cleanTest :test
         if: ${{ success() }}
 
       - name: E2E test
-        run: ./gradlew cleanTest :RestAPI:test
-        working-directory: src/main
+        run: docker compose exec app ./gradlew cleanTest :RestAPI:test
         if: ${{ success() }}
 
       - name: Generate report
         run: |
-          mkdir -p src/main/allure-results/BL && cp -R src/main/BL/build/allure-results src/main/allure-results/BL
-          mkdir -p src/main/allure-results/DA && cp -R src/main/DA/build/allure-results src/main/allure-results/DA
-          mkdir -p src/main/allure-results/RestAPI && cp -R src/main/RestAPI/build/allure-results src/main/allure-results/RestAPI
-          mkdir -p src/main/allure-results/main && cp -R src/main/build/allure-results src/main/allure-results/main
-          allure generate src/main/allure-results/* --clean
+          mkdir allure-report
+          allure generate allure-results/* --clean
 
       - name: Archive report
         uses: actions/upload-artifact@v3

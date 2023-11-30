@@ -30,7 +30,6 @@ dependencies {
     implementation("org.slf4j:slf4j-nop:$slf4j_version")
     implementation("org.slf4j:slf4j-api:$slf4j_version")
     implementation("com.zaxxer:HikariCP:4.0.3")
-    implementation("io.github.cdimascio:dotenv-kotlin:6.4.1")
 
     implementation("io.qameta.allure:allure-bom:2.24.0")
     testImplementation("io.qameta.allure:allure-junit5:2.24.0")
