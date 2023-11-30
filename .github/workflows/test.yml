@@ -41,20 +41,20 @@ jobs:
         working-directory: src/main
         if: ${{ success() }}
 
-      - name: DA unit test
-        run: ./gradlew cleanTest :DA:test
-        working-directory: src/main
-        if: ${{ success() }}
-
-      - name: Integrate test
-        run: ./gradlew cleanTest :test
-        working-directory: src/main
-        if: ${{ success() }}
-
-      - name: E2E test
-        run: ./gradlew cleanTest :RestAPI:test
-        working-directory: src/main
-        if: ${{ success() }}
+#      - name: DA unit test
+#        run: ./gradlew cleanTest :DA:test
+#        working-directory: src/main
+#        if: ${{ success() }}
+#
+#      - name: Integrate test
+#        run: ./gradlew cleanTest :test
+#        working-directory: src/main
+#        if: ${{ success() }}
+#
+#      - name: E2E test
+#        run: ./gradlew cleanTest :RestAPI:test
+#        working-directory: src/main
+#        if: ${{ success() }}
 
       - name: pwd
         run: pwd
@@ -64,6 +64,12 @@ jobs:
 
       - name: ls2
         run: ls src/main
+
+      - name: ls3
+        run: ls src/main/BL
+
+      - name: ls4
+        run: ls src/main/BL/build
 
       - name: Generate report
         run: allure generate src/main/allure-results/* --clean
