@@ -63,4 +63,4 @@ jobs:
 #        if: ${{ success() }}
 
       - name: Install allure
-        run: sudo apt-get update && apt-get install allure && allure --version
+        run: apt-get update -y && apt-get install -y allure && allure --version
