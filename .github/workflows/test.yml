@@ -17,14 +17,14 @@ jobs:
 
       - name: Up containers
         run: |
-          mkdir -p allure-results/BL
-          mkdir -p allure-results/DA
-          mkdir -p allure-results/main
-          mkdir -p allure-results/RestAPI
-          mkdir -p res/BL
-          mkdir -p res/DA
-          mkdir -p res/main
-          mkdir -p res/RestAPI
+#          mkdir -p allure-results/BL
+#          mkdir -p allure-results/DA
+#          mkdir -p allure-results/main
+#          mkdir -p allure-results/RestAPI
+#          mkdir -p res/BL
+#          mkdir -p res/DA
+#          mkdir -p res/main
+#          mkdir -p res/RestAPI
           docker-compose up -d
 
       - name: Build
