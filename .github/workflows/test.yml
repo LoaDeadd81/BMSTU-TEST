@@ -63,9 +63,7 @@ jobs:
 #        if: ${{ success() }}
 
       - name: Install allure
-        uses: ConorMacBride/install-package@v1
-        with:
-          apt: make
+        run: sudo apt-get update -y && sudo apt-get install -y default-jre && wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure_2.18.1-1_all.deb && sudo dpkg -i allure_2.18.1-1_all.deb
 
       - name: Check allure
-        run: make --version
+        run: allure --version
