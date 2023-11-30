@@ -5,65 +5,71 @@ on: push
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-#    services:
-#      dbtest:
-#        image: postgres:latest
-#        env:
-#          POSTGRES_DB: back
-#          POSTGRES_USER: postgres
-#          POSTGRES_PASSWORD: postgres
-#        ports:
-#          - 7543:5432
-#        options: >-
-#          --health-cmd pg_isready
-#          --health-interval 10s
-#          --health-timeout 5s
-#          --health-retries 5
+    services:
+      dbtest:
+        image: postgres:latest
+        env:
+          POSTGRES_DB: back
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 7543:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
-#      - uses: actions/checkout@v4.1.1
-#
-#      - name: Cache java
-#        id: cache-java
-#        uses: actions/cache@v3
-#        with:
-#          path: /opt/hostedtoolcache/Java_Oracle_jdk/20/x64/bin
-#          key: ${{ runner.os }}-java
-#          restore-keys: ${{ runner.os }}-java
-#
-#      - name: Setup Java
-#        if: ${{ steps.cache-java.outputs.cache-hit != 'true' }}
-#        uses: actions/setup-java@v4.0.0
-#        with:
-#          java-version: '20'
-#          distribution: 'oracle'
-#          cache: 'gradle'
-#
-#      - name: Build
-#        run: ./gradlew build -x test
-#        working-directory: src/main
-#
-#      - name: BL unit test
-#        run: ./gradlew cleanTest :BL:test
-#        working-directory: src/main
-#        if: ${{ success() }}
-#
-#      - name: DA unit test
-#        run: ./gradlew cleanTest :DA:test
-#        working-directory: src/main
-#        if: ${{ success() }}
-#
-#      - name: Integrate test
-#        run: ./gradlew cleanTest :test
-#        working-directory: src/main
-#        if: ${{ success() }}
-#
-#      - name: E2E test
-#        run: ./gradlew cleanTest :RestAPI:test
-#        working-directory: src/main
-#        if: ${{ success() }}
+      - uses: actions/checkout@v4.1.1
+
+      - name: Cache java
+        id: cache-java
+        uses: actions/cache@v3
+        with:
+          path: /opt/hostedtoolcache/Java_Oracle_jdk/20/x64/bin
+          key: ${{ runner.os }}-java
+          restore-keys: ${{ runner.os }}-java
+
+      - name: Setup Java
+        if: ${{ steps.cache-java.outputs.cache-hit != 'true' }}
+        uses: actions/setup-java@v4.0.0
+        with:
+          java-version: '20'
+          distribution: 'oracle'
+          cache: 'gradle'
 
       - name: Install allure
         run: sudo apt-get update -y && sudo apt-get install -y default-jre && wget https://github.com/allure-framework/allure2/releases/download/2.18.1/allure_2.18.1-1_all.deb && sudo dpkg -i allure_2.18.1-1_all.deb
 
-      - name: Check allure
-        run: allure --version
+      - name: Build
+        run: ./gradlew build -x test
+        working-directory: src/main
+
+      - name: BL unit test
+        run: ./gradlew cleanTest :BL:test
+        working-directory: src/main
+        if: ${{ success() }}
+
+      - name: DA unit test
+        run: ./gradlew cleanTest :DA:test
+        working-directory: src/main
+        if: ${{ success() }}
+
+      - name: Integrate test
+        run: ./gradlew cleanTest :test
+        working-directory: src/main
+        if: ${{ success() }}
+
+      - name: E2E test
+        run: ./gradlew cleanTest :RestAPI:test
+        working-directory: src/main
+        if: ${{ success() }}
+
+      - name: Generate report
+        run: allure generate src/main/allure-results/* --clean
+
+      - name: Archive report
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-report
+          path: allure-report
