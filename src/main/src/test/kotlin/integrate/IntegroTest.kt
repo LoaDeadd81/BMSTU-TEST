@@ -11,8 +11,8 @@ import da.data.mother.IngredientDataMother
 import da.data.mother.StageDataMother
 import da.data.mother.UserDataMother
 import da.exeption.NotFoundException
-import db.PGDataSourceProvider
-import db.testFactory
+import integrate.db.PGDataSourceProvider
+import integrate.db.testFactory
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.assertFalse
 import java.time.LocalDateTime

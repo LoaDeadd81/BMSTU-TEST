@@ -17,6 +17,5 @@ fun Application.configureRouting() {
             recipes()
             auth()
         }
-//        readme()
     }
 }

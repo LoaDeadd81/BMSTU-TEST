@@ -1,4 +1,4 @@
-package db
+package integrate.db
 
 import com.radcortez.flyway.test.junit.DataSourceInfo
 import com.radcortez.flyway.test.junit.DataSourceProvider
