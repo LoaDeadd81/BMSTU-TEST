@@ -19,27 +19,17 @@ services:
       - db
 
   app:
-    build: src/docker/web
-    volumes:
-      - ./src/main:/app
-      - ./allure-results/BL:/app/BL/build/allure-results
-      - ./allure-results/DA:/app/DA/build/allure-results
-      - ./allure-results/RestAPI:/app/RestAPI/build/allure-results
-      - ./allure-results/main:/app/build/allure-results
+    build: src
     env_file:
       - ci.env
     working_dir: /app
     depends_on:
       db:
         condition: service_healthy
+    volumes:
+      - ./reports:/app/reports
     networks:
       - db
-
-#  allure:
-#    build: src/docker/allure
-#    volumes:
-#      - ./allure-results:/app/allure-results
-#      - ./allure-report:/app/allure-report
 
 networks:
   db:

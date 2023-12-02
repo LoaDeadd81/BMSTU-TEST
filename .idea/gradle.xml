@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="externalProjectPath" value="$PROJECT_DIR$/src/main" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/src/kapp" />
         <option name="gradleJvm" value="#JAVA_HOME" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/src/main" />
-            <option value="$PROJECT_DIR$/src/main/BL" />
-            <option value="$PROJECT_DIR$/src/main/DA" />
-            <option value="$PROJECT_DIR$/src/main/RestAPI" />
+            <option value="$PROJECT_DIR$/src/kapp" />
+            <option value="$PROJECT_DIR$/src/kapp/BL" />
+            <option value="$PROJECT_DIR$/src/kapp/DA" />
+            <option value="$PROJECT_DIR$/src/kapp/RestAPI" />
+            <option value="$PROJECT_DIR$/src/kapp/integro" />
           </set>
         </option>
       </GradleProjectSettings>

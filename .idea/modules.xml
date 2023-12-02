@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/BMSTU-TEST.iml" filepath="$PROJECT_DIR$/.idea/BMSTU-TEST.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/KApp.main.iml" filepath="$PROJECT_DIR$/.idea/modules/KApp.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/KApp.test.iml" filepath="$PROJECT_DIR$/.idea/modules/KApp.test.iml" />
     </modules>
   </component>
 </project>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="integro" target="20" />
+      <module name="KApp.main.main" target="20" />
+      <module name="KApp.main.test" target="20" />
+      <module name="org.example.KApp.main" target="20" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
