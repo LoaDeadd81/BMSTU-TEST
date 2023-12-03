@@ -18,13 +18,11 @@ dependencies {
     testImplementation(kotlin("test"))
 
     implementation("ch.qos.logback:logback-classic:$logback_version")
-    implementation("org.slf4j:slf4j-nop:$slf4j_version")
+//    implementation("org.slf4j:slf4j-nop:$slf4j_version")
     implementation("org.slf4j:slf4j-api:$slf4j_version")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
-//    testImplementation(platform("io.qameta.allure:allure-bom:$allureVersion"))
-//    testImplementation("io.qameta.allure:allure-junit5:$allureVersion")
 }
 
 tasks.test {

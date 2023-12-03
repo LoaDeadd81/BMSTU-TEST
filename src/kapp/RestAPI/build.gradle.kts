@@ -44,19 +44,13 @@ dependencies {
     implementation("io.ktor:ktor-server-call-id:$ktor_version")
     implementation("io.ktor:ktor-server-call-logging:$ktor_version")
     implementation("com.apurebase:kgraphql-ktor:0.19.0")
-//    testImplementation("io.ktor:ktor-server-tests-jvm")
-//    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 
-//    allureRawResultElements(files("${layout.buildDirectory}/allure-results"))
-//    testImplementation(platform("io.qameta.allure:allure-bom:$allureVersion"))
-//    testImplementation("io.qameta.allure:allure-junit5:$allureVersion")
+    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
     testImplementation("com.radcortez.flyway:flyway-junit5-extension:1.4.0")
     testImplementation("io.ktor:ktor-server-test-host:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlin_version")
-    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
-
 }
 
 tasks.test {
@@ -67,20 +61,6 @@ tasks.test {
     testLogging.showStandardStreams = true
 
 }
-
-//allure{
-//    adapter{
-//        autoconfigure.set(true)
-//        autoconfigureListeners.set(true)
-//        aspectjWeaver.set(true)
-//        frameworks{
-//            junit5{
-//                enabled.set(true)
-//                autoconfigureListeners.set(true)
-//            }
-//        }
-//    }
-//}
 
 allure {
     adapter {

@@ -35,13 +35,11 @@ dependencies {
     implementation("com.zaxxer:HikariCP:4.0.3")
     implementation("io.github.microutils:kotlin-logging-jvm:3.0.5")
     implementation("ch.qos.logback:logback-classic:$logback_version")
-    implementation("org.slf4j:slf4j-nop:$slf4j_version")
+//    implementation("org.slf4j:slf4j-nop:$slf4j_version")
     implementation("org.slf4j:slf4j-api:$slf4j_version")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
     testImplementation("com.radcortez.flyway:flyway-junit5-extension:1.4.0")
-//    testImplementation(platform("io.qameta.allure:allure-bom:$allureVersion"))
-//    testImplementation("io.qameta.allure:allure-junit5:$allureVersion")
 }
 
 tasks.test {
@@ -65,9 +63,9 @@ kotlin {
 }
 
 flyway {
-    url = "jdbc:postgresql://localhost:65432/back"
-    user = "main_user"
-    password = "main_user"
+    url = "jdbc:postgresql://localhost:7543/back"
+    user = "postgres"
+    password = "postgres"
     locations = arrayOf("filesystem:src/main/resources/db/migration/")
     cleanDisabled = false
 }

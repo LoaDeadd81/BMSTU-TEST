@@ -24,7 +24,7 @@ dependencies {
     implementation(project(":DA"))
 
     implementation("ch.qos.logback:logback-classic:$logback_version")
-    implementation("org.slf4j:slf4j-nop:$slf4j_version")
+//    implementation("org.slf4j:slf4j-nop:$slf4j_version")
     implementation("org.slf4j:slf4j-api:$slf4j_version")
     implementation("com.zaxxer:HikariCP:4.0.3")
 

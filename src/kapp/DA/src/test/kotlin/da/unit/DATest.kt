@@ -2,6 +2,13 @@ package da.unit
 
 import bl.entities.PFC
 import bl.entities.RecipeState
+import ch.qos.logback.classic.Level
+import ch.qos.logback.classic.Logger
+import ch.qos.logback.classic.LoggerContext
+import ch.qos.logback.classic.encoder.PatternLayoutEncoder
+import ch.qos.logback.classic.spi.ILoggingEvent
+import ch.qos.logback.core.FileAppender
+import ch.qos.logback.core.util.StatusPrinter
 import com.radcortez.flyway.test.annotation.DataSource
 import com.radcortez.flyway.test.annotation.FlywayTest
 import com.radcortez.flyway.test.junit.DataSourceInfo
@@ -17,9 +24,9 @@ import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.extension.ExtensionContext
+import org.slf4j.LoggerFactory
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-
 
 val factory = PgRepositoryFactory(System.getenv("TEST_SCHEMA") ?: throw Exception("no TEST_SCHEMA in env"))
 
