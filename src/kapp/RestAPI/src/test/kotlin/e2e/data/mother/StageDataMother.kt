@@ -1,6 +1,7 @@
-package da.data.mother
+package e2e.data.mother
 
 import bl.entities.Stage
+import da.data.mother.IngredientInStageDataMother
 
 object StageDataMother {
     fun regularStage(): Stage {

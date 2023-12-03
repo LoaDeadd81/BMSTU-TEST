@@ -18,8 +18,8 @@ import com.example.plugins.configureSecurity
 import com.radcortez.flyway.test.annotation.DataSource
 import com.radcortez.flyway.test.annotation.FlywayTest
 import da.data.builder.RecipeDataBuilder
-import da.data.mother.CommentDataMother
-import da.data.mother.UserDataMother
+import e2e.data.mother.UserDataMother
+import e2e.data.mother.CommentDataMother
 import e2e.db.PGDataSourceProvider
 import e2e.db.testFactory
 import io.ktor.client.call.*

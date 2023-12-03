@@ -4,7 +4,6 @@ import api.plugins.configureGQL
 import api.plugins.configureLogging
 import api.plugins.configureStatusCodes
 import api.plugins.configureValidation
-import com.example.plugins.configureHTTP
 import com.example.plugins.configureRouting
 import com.example.plugins.configureSecurity
 import io.ktor.server.application.*
@@ -31,7 +30,6 @@ class RestApi {
 
 fun Application.module() {
     configureSecurity()
-    configureHTTP()
     configureRouting()
     configureValidation()
     configureStatusCodes()

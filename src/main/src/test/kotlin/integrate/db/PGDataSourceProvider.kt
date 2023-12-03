@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:src/kapp/RestAPI/src/test/kotlin/e2e/db/PGDataSourceProvider.kt
+package e2e.db
+========
 package integrate.db
+>>>>>>>> main:src/main/src/test/kotlin/integrate/db/PGDataSourceProvider.kt
 
 import com.radcortez.flyway.test.junit.DataSourceInfo
 import com.radcortez.flyway.test.junit.DataSourceProvider

@@ -78,6 +78,3 @@ kotlin {
 application {
     mainClass.set("main.MainKt")
 }
-
-
-
