@@ -5,7 +5,7 @@ import bl.managers.CommentManager
 import bl.managers.UserManager
 import bl.repositories.ICommentRepository
 import bl.repositories.IUserRepository
-import da.data.mother.CommentDataMother
+import bl.unit.data.mother.CommentDataMother
 import org.junit.jupiter.api.*
 import org.mockito.kotlin.*
 

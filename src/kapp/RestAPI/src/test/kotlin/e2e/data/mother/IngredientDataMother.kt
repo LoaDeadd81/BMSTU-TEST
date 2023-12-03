@@ -1,4 +1,4 @@
-package da.data.mother
+package e2e.data.mother
 
 import bl.entities.Ingredient
 import bl.entities.IngredientType

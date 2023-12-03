@@ -5,8 +5,8 @@ import bl.managers.IngredientManager
 import bl.managers.UserManager
 import com.radcortez.flyway.test.annotation.DataSource
 import com.radcortez.flyway.test.annotation.FlywayTest
-import da.data.mother.IngredientDataMother
 import da.exeption.NotFoundException
+import integrate.data.mother.IngredientDataMother
 import integrate.db.PGDataSourceProvider
 import integrate.db.testFactory
 import org.junit.jupiter.api.*

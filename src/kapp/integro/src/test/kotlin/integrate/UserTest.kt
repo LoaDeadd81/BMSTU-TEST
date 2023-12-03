@@ -4,9 +4,9 @@ import bl.managers.AccountService
 import bl.managers.UserManager
 import com.radcortez.flyway.test.annotation.DataSource
 import com.radcortez.flyway.test.annotation.FlywayTest
-import da.data.builder.RecipeDataBuilder
-import da.data.mother.UserDataMother
 import da.exeption.NotFoundException
+import integrate.data.builder.RecipeDataBuilder
+import integrate.data.mother.UserDataMother
 import integrate.db.PGDataSourceProvider
 import integrate.db.testFactory
 import org.junit.jupiter.api.*

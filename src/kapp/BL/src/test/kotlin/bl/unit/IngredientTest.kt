@@ -5,7 +5,7 @@ import bl.managers.IngredientManager
 import bl.managers.UserManager
 import bl.repositories.IIngredientRepository
 import bl.repositories.IUserRepository
-import da.data.mother.IngredientDataMother
+import bl.unit.data.mother.IngredientDataMother
 import org.junit.jupiter.api.*
 import org.mockito.kotlin.*
 

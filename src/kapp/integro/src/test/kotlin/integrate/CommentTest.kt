@@ -5,8 +5,8 @@ import bl.managers.CommentManager
 import bl.managers.UserManager
 import com.radcortez.flyway.test.annotation.DataSource
 import com.radcortez.flyway.test.annotation.FlywayTest
-import da.data.mother.CommentDataMother
 import da.exeption.NotFoundException
+import integrate.data.mother.CommentDataMother
 import integrate.db.PGDataSourceProvider
 import integrate.db.testFactory
 import org.junit.jupiter.api.*

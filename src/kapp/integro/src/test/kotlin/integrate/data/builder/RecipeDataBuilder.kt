@@ -1,10 +1,10 @@
-package da.data.builder
+package integrate.data.builder
 
 import bl.entities.*
-import da.data.mother.CommentDataMother
-import da.data.mother.IngredientInStageDataMother
-import da.data.mother.StageDataMother
-import da.data.mother.UserDataMother
+import integrate.data.mother.CommentDataMother
+import integrate.data.mother.IngredientInStageDataMother
+import integrate.data.mother.StageDataMother
+import integrate.data.mother.UserDataMother
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -45,7 +45,7 @@ class RecipeDataBuilder {
         return this
     }
 
-    fun withId(id: Int) : RecipeDataBuilder{
+    fun withId(id: Int) : RecipeDataBuilder {
         this.recipe.id = id
         return this
     }
