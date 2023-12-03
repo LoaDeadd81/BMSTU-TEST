@@ -45,10 +45,11 @@ class RecipeDataBuilder {
         return this
     }
 
-    fun withId(id: Int) : RecipeDataBuilder {
+    fun withId(id: Int): RecipeDataBuilder {
         this.recipe.id = id
         return this
     }
+
     fun withName(name: String): RecipeDataBuilder {
         this.recipe.name = name
         return this
@@ -61,22 +62,22 @@ class RecipeDataBuilder {
 
     fun withStages(stages: List<Stage>): RecipeDataBuilder {
         this.recipe.stages = stages
-        return this;
+        return this
     }
 
     fun withComments(comments: List<Comment>): RecipeDataBuilder {
         this.recipe.comments = comments
-        return this;
+        return this
     }
 
     fun withOwner(user: User): RecipeDataBuilder {
         this.recipe.owner = user
-        return this;
+        return this
     }
 
     fun withIngredients(ingredientsInStage: List<IngredientInStage>): RecipeDataBuilder {
         this.recipe.ingredients = ingredientsInStage
-        return this;
+        return this
     }
 
     fun build(): Recipe {

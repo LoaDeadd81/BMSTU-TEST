@@ -1,7 +1,7 @@
 package api.dto.responces.user
 
-import kotlinx.serialization.Serializable
 import bl.entities.User
+import kotlinx.serialization.Serializable
 
 @Serializable
 data class UserResponse(var id: Int, var login: String, var isAdmin: Boolean) {

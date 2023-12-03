@@ -1,6 +1,8 @@
 package bl.repositories
 
-import bl.entities.*
+import bl.entities.Recipe
+import bl.entities.RecipePreview
+import bl.entities.Stage
 
 interface IRecipeRepository {
     fun create(obj: Recipe): Int

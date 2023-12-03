@@ -35,10 +35,10 @@ fun StageTable.toEntity(): Stage {
     return Stage(
         id = this.id.value,
         time = this.time,
-    description = this.description,
+        description = this.description,
         ingredients = ingredients,
         orderNum = this.orderNum
-)
+    )
 }
 
 

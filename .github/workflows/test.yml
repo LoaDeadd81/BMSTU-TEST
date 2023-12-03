@@ -10,33 +10,40 @@ jobs:
 
       - name: Up containers
         run: docker-compose up -d --build
+        working-directory: test
 
       - name: Build
         run: docker compose exec app ./gradlew build -x test
+        working-directory: test
 
       - name: BL unit test
         run: docker compose exec app ./gradlew :BL:test
         if: ${{ success() }}
+        working-directory: test
 
       - name: DA unit test
         run: docker compose exec app ./gradlew :DA:test
         if: ${{ success() }}
+        working-directory: test
 
       - name: Integrate test
         run: docker compose exec app ./gradlew :integro:test
         if: ${{ success() }}
+        working-directory: test
 
       - name: E2E test
         run: docker compose exec app ./gradlew :RestAPI:test
         if: ${{ success() }}
+        working-directory: test
 
       - name: Generate report
         run: |
           docker compose exec app ./gradlew allureAggregateReport --clean
           docker compose exec app sh -c "cp -R /app/build/reports/allure-report/allureAggregateReport/* /app/reports"
+        working-directory: test
 
       - name: Archive report
         uses: actions/upload-artifact@v3
         with:
           name: test-report
-          path: reports
+          path: test/reports
