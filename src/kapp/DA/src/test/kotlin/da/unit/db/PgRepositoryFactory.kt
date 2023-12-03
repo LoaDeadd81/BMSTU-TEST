@@ -1,15 +1,11 @@
-<<<<<<<< HEAD:src/kapp/RestAPI/src/test/kotlin/e2e/db/PGDataSourceProvider.kt
-package e2e.db
-========
-package integrate.db
->>>>>>>> main:src/main/src/test/kotlin/integrate/db/PGDataSourceProvider.kt
+package da.unit.db
 
 import com.radcortez.flyway.test.junit.DataSourceInfo
 import com.radcortez.flyway.test.junit.DataSourceProvider
 import da.repositories.factory.PgRepositoryFactory
 import org.junit.jupiter.api.extension.ExtensionContext
 
-val testFactory = PgRepositoryFactory(System.getenv("TEST_SCHEMA") ?: throw Exception("no TEST_SCHEMA in env"))
+val factory = PgRepositoryFactory(System.getenv("TEST_SCHEMA") ?: throw Exception("no TEST_SCHEMA in env"))
 
 class PGDataSourceProvider : DataSourceProvider {
     override fun getDatasourceInfo(extensionContext: ExtensionContext?): DataSourceInfo {

@@ -7,8 +7,11 @@
 up:
 	docker-compose up -d
 
+up-db:
+	docker-compose up -d db
+
 down:
-	docker-compose down
+	docker-compose down --volumes
 
 build:
 	cd src/code && sudo ./gradlew build
@@ -20,4 +23,14 @@ clean:
 	cd src/code && sudo ./gradlew clean
 
 test:
-	docker compose exec web sh -c "cd /app && ./gradlew test"
+	sudo rm -rf allure-re*
+	sudo rm -rf src/main/allure-re*
+	sudo rm -rf src/main/BL/build/allure-re*
+	sudo rm -rf src/main/BL/build/test-results
+	sudo rm -rf src/main/DA/build/allure-re*
+	sudo rm -rf src/main/DA/build/test-results
+	sudo rm -rf src/main/RestAPI/build/allure-re*
+	sudo rm -rf src/main/RestAPI/build/test-results
+	sudo rm -rf src/main/build/allure-re*
+	sudo rm -rf src/main/build/test-results
+	sudo ./test.sh

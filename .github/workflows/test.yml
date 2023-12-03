@@ -8,43 +8,35 @@ jobs:
     steps:
       - uses: actions/checkout@v4.1.1
 
-      - name: Install allure
-        run: |
-          sudo apt-get update -y
-          sudo apt-get install -y default-jre
-          sudo wget https://github.com/allure-framework/allure2/releases/download/2.24.1/allure_2.24.1-1_all.deb
-          sudo dpkg -i allure_2.24.1-1_all.deb
-
       - name: Up containers
-        run: docker-compose up -d
+        run: docker-compose up -d --build
 
       - name: Build
         run: docker compose exec app ./gradlew build -x test
 
       - name: BL unit test
-        run: docker compose exec app ./gradlew cleanTest :BL:test
+        run: docker compose exec app ./gradlew :BL:test
         if: ${{ success() }}
 
       - name: DA unit test
-        run: docker compose exec app ./gradlew cleanTest :DA:test
+        run: docker compose exec app ./gradlew :DA:test
         if: ${{ success() }}
 
       - name: Integrate test
-        run: docker compose exec app ./gradlew cleanTest :test
+        run: docker compose exec app ./gradlew :integro:test
         if: ${{ success() }}
 
       - name: E2E test
-        run: docker compose exec app ./gradlew cleanTest :RestAPI:test
+        run: docker compose exec app ./gradlew :RestAPI:test
         if: ${{ success() }}
 
       - name: Generate report
         run: |
-          docker compose exec app sh -c "mkdir -p /app/res && cp -R /app/allure-results/* /app/res"
-          mkdir allure-report
-          allure generate res/* --clean
+          docker compose exec app ./gradlew allureAggregateReport --clean
+          docker compose exec app sh -c "cp -R /app/build/reports/allure-report/allureAggregateReport/* /app/reports"
 
       - name: Archive report
         uses: actions/upload-artifact@v3
         with:
           name: test-report
-          path: allure-report
+          path: reports
