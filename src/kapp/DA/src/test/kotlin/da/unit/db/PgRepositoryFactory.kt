@@ -1,11 +1,11 @@
-package db
+package da.unit.db
 
 import com.radcortez.flyway.test.junit.DataSourceInfo
 import com.radcortez.flyway.test.junit.DataSourceProvider
 import da.repositories.factory.PgRepositoryFactory
 import org.junit.jupiter.api.extension.ExtensionContext
 
-val testFactory = PgRepositoryFactory(System.getenv("TEST_SCHEMA") ?: throw Exception("no TEST_SCHEMA in env"))
+val factory = PgRepositoryFactory(System.getenv("TEST_SCHEMA") ?: throw Exception("no TEST_SCHEMA in env"))
 
 class PGDataSourceProvider : DataSourceProvider {
     override fun getDatasourceInfo(extensionContext: ExtensionContext?): DataSourceInfo {

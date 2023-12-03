@@ -20,8 +20,8 @@ import com.radcortez.flyway.test.annotation.FlywayTest
 import da.data.builder.RecipeDataBuilder
 import da.data.mother.CommentDataMother
 import da.data.mother.UserDataMother
-import db.PGDataSourceProvider
-import db.testFactory
+import e2e.db.PGDataSourceProvider
+import e2e.db.testFactory
 import io.ktor.client.call.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
