@@ -11,11 +11,10 @@ import org.mockito.Mockito.*
 @TestMethodOrder(MethodOrderer.Random::class)
 class AccountTest {
     private lateinit var mockUserRep: IUserRepository
-    val adminId = 1
 
     @BeforeEach
     fun setMocks() {
-        mockUserRep = mock<IUserRepository>()
+        mockUserRep = mock()
         UserManager.registerRepository(mockUserRep)
     }
 
